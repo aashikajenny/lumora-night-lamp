@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumora — Night Lamps</title>
+  <meta name="description" content="Lumora — a moonlit night lamp that glows with you." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="is-loading">
+
+  <!-- Background layers -->
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor-light" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div id="darkness" aria-hidden="true"></div>
+
+  <!-- ============ INTRO ============ -->
+  <div id="intro">
+    <div class="intro-loader">
+      <span class="intro-count">0</span><span class="intro-pct">%</span>
+      <div class="intro-bar"><i></i></div>
+      <p>warming the filament</p>
+    </div>
+
+    <div class="intro-stage">
+      <button class="cord" aria-label="Pull the cord to switch on the lamp">
+        <span class="cord-line"></span>
+        <span class="cord-knob"></span>
+      </button>
+
+      <div class="lamp intro-lamp" style="--on:0">
+        <div class="lamp-halo"></div>
+        <div class="lamp-orb">
+          <div class="orb-surface"></div>
+          <div class="orb-off"></div>
+          <div class="orb-shine"></div>
+        </div>
+        <div class="lamp-base"></div>
+        <div class="lamp-floor"></div>
+      </div>
+
+      <h1 class="intro-brand" aria-label="Lumora">
+        <span>L</span><span>U</span><span>M</span><span>O</span><span>R</span><span>A</span>
+      </h1>
+      <p class="intro-hint">Pull the cord <em>— or press Enter —</em> to switch on</p>
+    </div>
+
+    <div class="intro-flash"></div>
+  </div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <a href="#top" class="logo"><span class="logo-orb"></span>Lumora</a>
+    <nav class="nav-links">
+      <a href="#moods">Moods</a>
+      <a href="#features">Features</a>
+      <a href="#studio">Studio</a>
+      <a href="#collection">Collection</a>
+    </nav>
+    <button class="switch" id="lightsSwitch" aria-pressed="true" title="Toggle the lights">
+      <span class="switch-track"><span class="switch-thumb"></span></span>
+      <span class="switch-label">Lights on</span>
+    </button>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow reveal-up">The Lumora Moon Lamp · Series 02</p>
+        <h1 class="hero-title split">Light that <em>dreams</em> with you.</h1>
+        <p class="hero-sub reveal-up">A hand-finished glass moon that breathes warm light into the quietest hours. Sixteen million moods. Seventy-two hours of glow. Zero harsh edges.</p>
+        <div class="hero-cta reveal-up">
+          <a href="#studio" class="btn btn-glow"><span>Design your glow</span></a>
+          <a href="#moods" class="btn btn-ghost">Explore moods</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="orbit orbit-1"></div>
+        <div class="orbit orbit-2"></div>
+        <div class="lamp hero-lamp" style="--on:0">
+          <div class="lamp-halo"></div>
+          <div class="lamp-rays"></div>
+          <div class="lamp-orb">
+            <div class="orb-surface"></div>
+            <div class="orb-off"></div>
+            <div class="orb-shine"></div>
+          </div>
+          <div class="lamp-base"></div>
+          <div class="lamp-floor"></div>
+        </div>
+      </div>
+
+      <div class="scroll-cue">
+        <span>Scroll</span>
+        <i></i>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Moonlight</span><b>✦</b><span>Ember</span><b>✦</b><span>Aurora</span><b>✦</b><span>Honey</span><b>✦</b><span>Dusk Rose</span><b>✦</b>
+        <span>Moonlight</span><b>✦</b><span>Ember</span><b>✦</b><span>Aurora</span><b>✦</b><span>Honey</span><b>✦</b><span>Dusk Rose</span><b>✦</b>
+      </div>
+    </div>
+
+    <!-- ============ STATEMENT ============ -->
+    <section class="statement">
+      <p class="statement-text">
+        We believe the night deserves <em>softer light</em>. Not the glare of screens, not the cold hum of ceilings — but a gentle, living glow that fades with your breath and wakes with the dawn.
+      </p>
+    </section>
+
+    <!-- ============ MOODS (pinned) ============ -->
+    <section class="moods" id="moods">
+      <div class="moods-pin">
+        <div class="moods-left">
+          <p class="eyebrow">Five moods · one lamp</p>
+          <div class="mood-texts">
+            <article class="mood-text is-active">
+              <span class="mood-k">2200K</span>
+              <h2>Ember</h2>
+              <p>The colour of a dying campfire. Melatonin-friendly amber for slow evenings and long books.</p>
+            </article>
+            <article class="mood-text">
+              <span class="mood-k">2700K</span>
+              <h2>Honey</h2>
+              <p>Warm and golden, like late sun through curtains. Our signature everyday glow.</p>
+            </article>
+            <article class="mood-text">
+              <span class="mood-k">4100K</span>
+              <h2>Moonlight</h2>
+              <p>A cool silver hush. Just enough light to find the door without waking the house.</p>
+            </article>
+            <article class="mood-text">
+              <span class="mood-k">RGB</span>
+              <h2>Aurora</h2>
+              <p>Slow drifting greens and teals that move like northern lights across your ceiling.</p>
+            </article>
+            <article class="mood-text">
+              <span class="mood-k">RGB</span>
+              <h2>Dusk Rose</h2>
+              <p>Soft pink twilight for the hour between day and dreams. Romantic, calm, unhurried.</p>
+            </article>
+          </div>
+          <div class="mood-progress"><i></i></div>
+        </div>
+        <div class="moods-right">
+          <div class="lamp mood-lamp" style="--on:1">
+            <div class="lamp-halo"></div>
+            <div class="lamp-rays"></div>
+            <div class="lamp-orb">
+              <div class="orb-surface"></div>
+              <div class="orb-off"></div>
+              <div class="orb-shine"></div>
+            </div>
+            <div class="lamp-base"></div>
+            <div class="lamp-floor"></div>
+          </div>
+          <ul class="mood-dots">
+            <li class="is-active"></li><li></li><li></li><li></li><li></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FLASHLIGHT ============ -->
+    <section class="flashlight">
+      <div class="flashlight-content">
+        <p class="eyebrow">Move your light</p>
+        <h2>Some things are only <em>found</em> in the dark.</h2>
+        <div class="hidden-notes">
+          <span style="--x:12%;--y:18%">a lullaby</span>
+          <span style="--x:72%;--y:12%">the last chapter</span>
+          <span style="--x:82%;--y:62%">3 a.m. feeding</span>
+          <span style="--x:8%;--y:72%">a quiet thought</span>
+          <span style="--x:48%;--y:84%">first steps</span>
+          <span style="--x:38%;--y:8%">the cat's eyes</span>
+        </div>
+      </div>
+      <div class="flashlight-mask"></div>
+      <p class="flashlight-hint">Move your cursor to light the room</p>
+    </section>
+
+    <!-- ============ FEATURES ============ -->
+    <section class="features" id="features">
+      <div class="section-head">
+        <p class="eyebrow reveal-up">Crafted for the night</p>
+        <h2 class="split">Every detail, <em>softly</em> considered.</h2>
+      </div>
+      <div class="feature-grid">
+        <article class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          </div>
+          <h3>Sunset fade</h3>
+          <p>Dims over 30 minutes in sync with your breathing, so you drift off before it does.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 11v2"/><path d="M6 10v4M9 10v4M12 10v4"/></svg>
+          </div>
+          <h3>72-hour glow</h3>
+          <p>A single USB-C charge lasts three full nights at comfort brightness.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3>Touch &amp; tap</h3>
+          <p>Tap the moon to switch on. Hold to dim. Double-tap to cycle through moods.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.4-7-11a7 7 0 0 1 14 0c0 6.6-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          </div>
+          <h3>Hand-cast glass</h3>
+          <p>Each moon is mouth-blown and etched with real lunar topography from NASA data.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M6 20V9l6-5 6 5v11"/><path d="M10 20v-5h4v5"/></svg>
+          </div>
+          <h3>Walnut base</h3>
+          <p>Sustainably sourced, oil-finished walnut that warms under the glow.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M2 12c3-6 17-6 20 0"/><path d="M5.5 15c2.5-3.5 10.5-3.5 13 0"/><circle cx="12" cy="18.5" r="1.3"/></svg>
+          </div>
+          <h3>App &amp; voice</h3>
+          <p>Schedules, scenes and whispers — works with your phone and your smart speaker.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ STUDIO ============ -->
+    <section class="studio" id="studio">
+      <div class="studio-visual">
+        <div class="lamp studio-lamp" style="--on:1">
+          <div class="lamp-halo"></div>
+          <div class="lamp-rays"></div>
+          <div class="lamp-orb">
+            <div class="orb-surface"></div>
+            <div class="orb-off"></div>
+            <div class="orb-shine"></div>
+          </div>
+          <div class="lamp-base"></div>
+          <div class="lamp-floor"></div>
+        </div>
+      </div>
+      <div class="studio-panel">
+        <p class="eyebrow reveal-up">Lumora Studio</p>
+        <h2 class="split">Make the light <em>yours</em>.</h2>
+        <p class="reveal-up muted">Pick a colour, set the brightness, and let it breathe. This is exactly how the lamp will look on your nightstand.</p>
+
+        <div class="control reveal-up">
+          <label>Colour</label>
+          <div class="swatches" role="radiogroup" aria-label="Lamp colour">
+            <button class="swatch is-active" style="--s:255,170,85" data-name="Honey" aria-label="Honey"></button>
+            <button class="swatch" style="--s:255,120,50" data-name="Ember" aria-label="Ember"></button>
+            <button class="swatch" style="--s:180,205,255" data-name="Moonlight" aria-label="Moonlight"></button>
+            <button class="swatch" style="--s:110,240,200" data-name="Aurora" aria-label="Aurora"></button>
+            <button class="swatch" style="--s:255,130,180" data-name="Dusk Rose" aria-label="Dusk Rose"></button>
+            <button class="swatch" style="--s:170,130,255" data-name="Lavender" aria-label="Lavender"></button>
+          </div>
+          <p class="swatch-name">Honey</p>
+        </div>
+
+        <div class="control reveal-up">
+          <label for="brightness">Brightness <output id="brightOut">80%</output></label>
+          <input type="range" id="brightness" min="0" max="100" value="80" />
+        </div>
+
+        <div class="control control-row reveal-up">
+          <label for="breathe">Breathing mode</label>
+          <button class="toggle" id="breathe" aria-pressed="false"><span></span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COLLECTION (horizontal) ============ -->
+    <section class="collection" id="collection">
+      <div class="collection-pin">
+        <div class="collection-head">
+          <p class="eyebrow">The collection</p>
+          <h2>Five shapes of <em>night</em>.</h2>
+        </div>
+        <div class="collection-track">
+          <article class="product" style="--c:255,170,85">
+            <div class="product-stage"><div class="mini mini-luna"><i></i></div></div>
+            <div class="product-info"><h3>Luna</h3><p>The original moon. 15 cm glass sphere.</p><span>$59</span></div>
+          </article>
+          <article class="product" style="--c:255,120,50">
+            <div class="product-stage"><div class="mini mini-ember"><i></i></div></div>
+            <div class="product-info"><h3>Ember</h3><p>A tall capsule that glows like a candle.</p><span>$49</span></div>
+          </article>
+          <article class="product" style="--c:255,130,180">
+            <div class="product-stage"><div class="mini mini-dome"><i></i></div></div>
+            <div class="product-info"><h3>Dome</h3><p>Mushroom-cap glow for little explorers.</p><span>$45</span></div>
+          </article>
+          <article class="product" style="--c:110,240,200">
+            <div class="product-stage"><div class="mini mini-halo"><i></i></div></div>
+            <div class="product-info"><h3>Halo</h3><p>A floating ring of light. Wall or desk.</p><span>$79</span></div>
+          </article>
+          <article class="product" style="--c:180,205,255">
+            <div class="product-stage"><div class="mini mini-pebble"><i></i></div></div>
+            <div class="product-info"><h3>Pebble</h3><p>Pocket-sized. Fits in a palm, lights a room.</p><span>$35</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ NUMBERS ============ -->
+    <section class="numbers">
+      <div class="stat"><b data-count="72">0</b><span>hours per charge</span></div>
+      <div class="stat"><b data-count="16" data-suffix="M">0</b><span>colours to choose</span></div>
+      <div class="stat"><b data-count="0.1" data-decimals="1">0</b><span>lux minimum glow</span></div>
+      <div class="stat"><b data-count="48" data-suffix="k+">0</b><span>calmer bedrooms</span></div>
+    </section>
+
+    <!-- ============ REVIEWS ============ -->
+    <section class="reviews">
+      <h2 class="split center">Whispered by <em>night owls</em>.</h2>
+      <div class="review-rows">
+        <div class="review-row">
+          <blockquote>“My daughter calls it her pocket moon. Bedtime went from 40 minutes to 10.”<cite>— Priya, Bengaluru</cite></blockquote>
+          <blockquote>“The sunset fade is witchcraft. I'm asleep before it goes dark.”<cite>— Marco, Lisbon</cite></blockquote>
+          <blockquote>“Finally a night light that doesn't look like a gadget.”<cite>— Hana, Osaka</cite></blockquote>
+          <blockquote>“Night feeds are so much calmer in Ember mode.”<cite>— Sam, Toronto</cite></blockquote>
+          <blockquote>“My daughter calls it her pocket moon. Bedtime went from 40 minutes to 10.”<cite>— Priya, Bengaluru</cite></blockquote>
+          <blockquote>“The sunset fade is witchcraft. I'm asleep before it goes dark.”<cite>— Marco, Lisbon</cite></blockquote>
+          <blockquote>“Finally a night light that doesn't look like a gadget.”<cite>— Hana, Osaka</cite></blockquote>
+          <blockquote>“Night feeds are so much calmer in Ember mode.”<cite>— Sam, Toronto</cite></blockquote>
+        </div>
+        <div class="review-row reverse">
+          <blockquote>“The walnut base glows amber at night. Gorgeous.”<cite>— Elise, Oslo</cite></blockquote>
+          <blockquote>“Aurora mode on the ceiling is my new meditation.”<cite>— Dev, Pune</cite></blockquote>
+          <blockquote>“Bought one, then three more as gifts.”<cite>— Jo, Melbourne</cite></blockquote>
+          <blockquote>“It feels like the moon actually lives in my room.”<cite>— Aiko, Kyoto</cite></blockquote>
+          <blockquote>“The walnut base glows amber at night. Gorgeous.”<cite>— Elise, Oslo</cite></blockquote>
+          <blockquote>“Aurora mode on the ceiling is my new meditation.”<cite>— Dev, Pune</cite></blockquote>
+          <blockquote>“Bought one, then three more as gifts.”<cite>— Jo, Melbourne</cite></blockquote>
+          <blockquote>“It feels like the moon actually lives in my room.”<cite>— Aiko, Kyoto</cite></blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="cta">
+      <div class="cta-glow"></div>
+      <div class="lamp cta-lamp" style="--on:0">
+        <div class="lamp-halo"></div>
+        <div class="lamp-rays"></div>
+        <div class="lamp-orb">
+          <div class="orb-surface"></div>
+          <div class="orb-off"></div>
+          <div class="orb-shine"></div>
+        </div>
+        <div class="lamp-base"></div>
+        <div class="lamp-floor"></div>
+      </div>
+      <h2 class="cta-title">Switch on<br/><em>your nights.</em></h2>
+      <p class="muted">Free shipping · 2-year warranty · 60 nights to fall in love</p>
+      <a href="#studio" class="btn btn-glow btn-lg"><span>Pre-order Luna — $59</span></a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a href="#top" class="logo"><span class="logo-orb"></span>Lumora</a>
+    <p>Made for the quiet hours. © 2026 Lumora Lighting.</p>
+    <div class="footer-links"><a href="#moods">Moods</a><a href="#studio">Studio</a><a href="#collection">Shop</a></div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
